@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
 <!-- 直接替换下方整段 <style> -->
 <style>
-/* ========= 温情陪伴·非遗口述史 变量版（零侵入替换） ========= */
+/* ========= 温情陪伴·非遗口述史 — 一镜到底修复版 ========= */
 
 /* 1. 全局变量：软木暖金配色 */
 :root{
@@ -18,7 +18,6 @@
     --wood-brown:#4E413A;    /* 文字主色 */
     --candle-gold:#C8955F;   /* 按钮、强调 */
     --old-paper:#E7DCC3;     /* 卡片、分隔 */
-    --indigo-night:#2C3E50;  /* 辅助冷色 */
     --radius:12px;
     --shadow:0 4px 12px rgba(78,65,58,.08);
     --font-title:'Noto Serif SC',serif;
@@ -33,10 +32,16 @@ html{
     font-family:var(--font-body);
     background:linear-gradient(135deg,var(--warm-cotton) 0%,var(--old-paper) 100%);
     color:var(--wood-brown);
+    scroll-padding-top:100px;
 }
-body{line-height:1.75;letter-spacing:.03em;-webkit-font-smoothing:antialiased;scroll-padding-top:100px}
+body{
+    line-height:1.75;
+    letter-spacing:.03em;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+}
 
-/* 3. 页头：磨砂玻璃 + 滚动变色 */
+/* 3. 页头：磨砂玻璃 */
 .page-header{
     position:fixed;top:0;left:0;width:100%;
     background:rgba(255,255,255,.45);
@@ -54,24 +59,16 @@ body{line-height:1.75;letter-spacing:.03em;-webkit-font-smoothing:antialiased;sc
 .page-title{font-size:2rem;font-family:var(--font-title);font-weight:700;color:var(--candle-gold);letter-spacing:.05rem}
 
 /* 4. 导航 */
-.page-nav ul{list-style:none;display:flex;gap:1.3rem}
-.page-nav a{
-    color:var(--wood-brown);text-decoration:none;font-weight:600;
-    padding:.4rem .8rem;border-radius:var(--radius);position:relative;
-    transition:all .3s;
-}
-.page-nav a::after{
-    content:'';position:absolute;left:0;bottom:0;width:0;height:2px;
-    background:var(--candle-gold);transition:width .3s
-}
-.page-nav a:hover::after,
-.page-nav a:focus::after{width:100%}
-.page-nav a.active,
-.page-nav a:hover{background:var(--candle-gold);color:var(--warm-cotton)}
+.page-nav a.active{background-color:var(--candle-gold);color:var(--warm-cotton)}
+.page-nav ul{transform-origin:top center;transition:transform .4s ease,opacity .4s ease;list-style:none;display:flex;gap:1.3rem}
+.page-nav a{color:var(--wood-brown);text-decoration:none;font-weight:600;padding:.4rem .8rem;border-radius:var(--radius);position:relative;transition:all .3s}
+.page-nav a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--candle-gold);transition:width .3s}
+.page-nav a:hover::after,.page-nav a:focus::after{width:100%}
+.page-nav a:hover{background:var(--candle-gold);color:var(--warm-cotton);outline:none}
 
 /* 5. 汉堡菜单 */
 .nav-toggle{display:none;flex-direction:column;justify-content:space-around;width:28px;height:24px;cursor:pointer;background:transparent;border:none;position:relative;z-index:10001}
-.nav-toggle .hamburger,.nav-toggle .hamburger::before,.nav-toggle .hamburger::after{content:'';display:block;width:28px;height:3px;background-color:var(--candle-gold);border-radius:2px;transition:all .3s;position:relative}
+.nav-toggle .hamburger,.nav-toggle .hamburger::before,.nav-toggle .hamburger::after{content:'';display:block;width:28px;height:3px;background-color:var(--candle-gold);border-radius:2px;transition:all .3s}
 .nav-toggle .hamburger::before{position:absolute;top:-8px}.nav-toggle .hamburger::after{position:absolute;top:8px}
 .nav-toggle.active .hamburger{background:transparent}.nav-toggle.active .hamburger::before{transform:rotate(45deg);top:0}.nav-toggle.active .hamburger::after{transform:rotate(-45deg);top:0}
 @media(max-width:768px){
@@ -84,7 +81,7 @@ body{line-height:1.75;letter-spacing:.03em;-webkit-font-smoothing:antialiased;sc
     .page-nav ul a:hover{background:var(--candle-gold);color:var(--warm-cotton);transform:translateX(5px)}
 }
 
-/* 6. Hero 首屏 */
+/* 6. Hero 首屏（保留视差 & 交互） */
 .hero-trail{
     height:100vh;
     background:linear-gradient(135deg,var(--old-paper) 0%,var(--candle-gold) 100%);
@@ -97,10 +94,8 @@ body{line-height:1.75;letter-spacing:.03em;-webkit-font-smoothing:antialiased;sc
 .hero-trail-content{
     position:relative;z-index:2;
     background:rgba(255,255,255,.88);backdrop-filter:blur(8px);
-    color:var(--candle-gold);
-    padding:2.5rem 3rem;border-radius:24px;
-    box-shadow:0 10px 30px rgba(78,65,58,.25);
-    max-width:800px;animation:fadeInUp 1s ease
+    color:var(--candle-gold);padding:2.5rem 3rem;border-radius:24px;
+    box-shadow:0 10px 30px rgba(78,65,58,.25);max-width:800px;animation:fadeInUp 1s ease
 }
 .hero-trail-content h1{font-size:3rem;font-weight:700;margin-bottom:1rem;font-family:var(--font-title)}
 .hero-trail-content p{font-size:1.3rem;line-height:1.8;margin-bottom:1.5rem}
@@ -179,21 +174,29 @@ h3{font-size:1.4rem;margin-bottom:.5rem}
 }
 .slider-indicators button.active{background:var(--candle-gold);transform:scale(1.2)}
 
-/* 13. 按钮通用 */
+/* 13. 按钮通用 & 居中 */
 .button-link{
     display:inline-block;background:var(--candle-gold);color:var(--warm-cotton);
     padding:.8rem 2rem;font-weight:600;font-size:1.1rem;border-radius:30px;border:none;
     cursor:pointer;transition:all .3s;box-shadow:0 6px 15px rgba(200,149,95,.25)
 }
 .button-link:hover{background:var(--warm-cotton);color:var(--candle-gold);transform:translateY(-3px)}
+.experience-section{display:flex;justify-content:center;align-items:center;padding:2rem 0 3rem}
 
-/* 14. 团队成员 */
+/* 14. 团队成员 & 交错 */
 .team-members{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem}
 .team-member{text-align:center;padding:1.5rem}
 .team-member img{width:120px;height:120px;border-radius:50%;border:4px solid var(--candle-gold);transition:transform .3s}
 .team-member:hover img{transform:scale(1.05)}
 .team-member h4{color:var(--candle-gold);margin-bottom:.3rem}
 .team-member p{color:var(--wood-brown)}
+
+.team-groups{display:grid;grid-template-columns:1fr;gap:1.5rem}
+.team-group{background:var(--old-paper);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.5rem;transition:transform .3s}
+.team-group:hover{transform:translateY(-5px)}
+.group-title{font-size:1.4rem;font-weight:600;color:var(--candle-gold);margin-bottom:1rem;text-align:center}
+.group-members{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:768px){.group-members{grid-template-columns:1fr}}
 
 /* 15. 列表 & 弹窗 */
 .text-content ul{list-style:none;padding-left:20px}
@@ -202,30 +205,37 @@ h3{font-size:1.4rem;margin-bottom:.5rem}
 
 .submit-modal,.share-modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:10001;justify-content:center;align-items:center}
 .submit-modal.open,.share-modal.open{display:flex;animation:modalFadeIn .3s forwards}
-.modal-content,.share-content{
-    background:rgba(255,255,255,.9);backdrop-filter:blur(10px);
-    border-radius:var(--radius);box-shadow:0 8px 30px rgba(78,65,58,.2);
-    padding:2rem;text-align:center;max-width:400px;width:90%;animation:modalZoomIn .3s forwards
-}
+.modal-content,.share-content{background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-radius:var(--radius);box-shadow:0 8px 30px rgba(78,65,58,.2);padding:2rem;text-align:center;max-width:400px;width:90%;animation:modalZoomIn .3s forwards}
 @keyframes modalFadeIn{from{opacity:0}to{opacity:1}}
 @keyframes modalZoomIn{from{transform:scale(0)}to{transform:scale(1)}}
 
-/* 16. 页脚 */
-.page-footer{
-    background:var(--wood-brown);color:var(--warm-cotton);
-    text-align:center;padding:1.5rem 1rem;margin-top:3rem;
-    border-radius:var(--radius) var(--radius) 0 0
-}
+/* 16. 浮动按钮（右下角双按钮+呼吸+上下浮动） */
+.floating-icons{position:fixed;bottom:30px;right:30px;display:flex;flex-direction:column;gap:0;z-index:10000}
+.floating-icon{display:flex;flex-direction:column;align-items:center;cursor:pointer;transition:all .3s;position:relative}
+.floating-icon-button{background:rgba(255,255,255,.35);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.5);border-radius:8px;display:flex;justify-content:center;align-items:center;transition:all .3s;overflow:hidden;animation:pulse 3s infinite}
+.floating-icon:first-child .floating-icon-button{width:75px;height:90px}
+.floating-icon:last-child .floating-icon-button{width:75px;height:22.5px}
+.floating-icon-button img{width:100%;height:100%;object-fit:cover}
+.floating-icon-text{font-size:.8rem;color:var(--candle-gold);background:rgba(255,255,255,.8);padding:2px 6px;border-radius:4px;font-weight:600;white-space:nowrap;transition:all .3s}
+.floating-icon:first-child .floating-icon-text{margin-bottom:8px}
+.floating-icon:last-child .floating-icon-text{margin-top:8px}
+@keyframes pulse{0%{transform:scale(.99);box-shadow:0 0 0 0 rgba(200,149,95,.2)}70%{transform:scale(1.01);box-shadow:0 0 0 10px rgba(200,149,95,0)}100%{transform:scale(.99);box-shadow:0 0 0 0 rgba(200,149,95,.2)}}
+@keyframes floatUpDown{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes floatLeftRight{0%,100%{transform:translateX(0)}50%{transform:translateX(-6px)}}
+.floating-icon:nth-child(1):hover .floating-icon-button{animation:floatUpDown 1s ease-in-out infinite}
+.floating-icon:nth-child(2):hover .floating-icon-button{animation:floatLeftRight 1s ease-in-out infinite}
+.floating-icon:hover .floating-icon-button{box-shadow:0 8px 25px rgba(200,149,95,.4);transform:scale(1.05)}
+.floating-icon:hover .floating-icon-text{transform:translateY(-2px)}
 
-/* 17. 下滑提示 */
+/* 17. 页脚 */
+.page-footer{background:var(--wood-brown);color:var(--warm-cotton);text-align:center;padding:1.5rem 1rem;margin-top:3rem;border-radius:var(--radius) var(--radius) 0 0}
+
+/* 下滑提示 */
 .scroll-down-indicator{
     position:absolute;bottom:40px;left:50%;transform:translateX(-50%);
     cursor:pointer;animation:bounceDown 2s infinite;z-index:2;opacity:.9
 }
-@keyframes bounceDown{
-    0%,100%{transform:translate(-50%,0)}
-    50%{transform:translate(-50%,6px)}
-}
+@keyframes bounceDown{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,6px)}}
 
 /* 18. 响应式微调 */
 @media(max-width:768px){
