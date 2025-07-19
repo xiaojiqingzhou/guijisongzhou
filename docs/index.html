@@ -8,22 +8,22 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- 直接替换下方整段 <style> -->
 <style>
-/* ===== 温情陪伴·非遗口述史 — 零侵入美化完整版 ===== */
-
-/* 1. 全局变量：软木暖金配色 */
+/* ===== 温情陪伴·非遗口述史 — 变量驱动完整版 ===== */
 :root{
     --warm-cotton:#F7F3EE;   /* 大面积背景 */
     --wood-brown:#4E413A;    /* 文字主色 */
-    --candle-gold:#C8955F;   /* 按钮/强调 */
-    --old-paper:#E7DCC3;     /* 卡片/分隔 */
+    --candle-gold:#C8955F;   /* 按钮、强调 */
+    --old-paper:#E7DCC3;     /* 卡片、分隔 */
+    --indigo-night:#2C3E50;  /* 辅助冷色 */
     --radius:12px;
     --shadow:0 4px 12px rgba(78,65,58,.08);
     --font-title:'Noto Serif SC',serif;
     --font-body:'Noto Sans SC',sans-serif;
 }
 
-/* 2. 页面基底 */
+/* 全局基底 */
 *{margin:0;padding:0;box-sizing:border-box}
 html{
     scroll-behavior:smooth;
@@ -34,7 +34,7 @@ html{
 }
 body{line-height:1.75;letter-spacing:.03em;-webkit-font-smoothing:antialiased}
 
-/* 3. 页头：磨砂玻璃 */
+/* 页头：磨砂玻璃 */
 .page-header{
     position:fixed;top:0;left:0;width:100%;
     background:rgba(255,255,255,.45);
@@ -51,7 +51,7 @@ body{line-height:1.75;letter-spacing:.03em;-webkit-font-smoothing:antialiased}
 .page-header.scrolled{background:rgba(255,255,255,.55);box-shadow:0 4px 12px rgba(78,65,58,.12)}
 .page-title{font-size:2rem;font-family:var(--font-title);font-weight:700;color:var(--candle-gold);letter-spacing:.05rem}
 
-/* 4. 导航 */
+/* 导航 */
 .page-nav ul{list-style:none;display:flex;gap:1.3rem}
 .page-nav a{
     color:var(--wood-brown);text-decoration:none;font-weight:600;
@@ -67,7 +67,7 @@ body{line-height:1.75;letter-spacing:.03em;-webkit-font-smoothing:antialiased}
 .page-nav a.active,
 .page-nav a:hover{background:var(--candle-gold);color:var(--warm-cotton)}
 
-/* 5. 汉堡菜单 */
+/* 汉堡菜单 */
 .nav-toggle .hamburger,
 .nav-toggle .hamburger::before,
 .nav-toggle .hamburger::after{background-color:var(--candle-gold)}
@@ -78,10 +78,10 @@ body{line-height:1.75;letter-spacing:.03em;-webkit-font-smoothing:antialiased}
     .page-nav ul a:hover{background:var(--candle-gold);color:var(--warm-cotton)}
 }
 
-/* 6. 主体容器 */
+/* 主体容器 */
 .page-main{padding:100px 1.5rem 3rem;max-width:960px;margin:0 auto}
 
-/* 7. 通用卡片 */
+/* 通用卡片 */
 .section-wrapper,
 .team-group,
 .team-member,
@@ -98,7 +98,7 @@ body{line-height:1.75;letter-spacing:.03em;-webkit-font-smoothing:antialiased}
     box-shadow:0 8px 20px rgba(78,65,58,.12)
 }
 
-/* 8. 标题 */
+/* 标题 */
 h1,h2,h3{font-family:var(--font-title);color:var(--candle-gold)}
 h1{font-size:2.2rem;text-align:center;margin-bottom:1rem;position:relative}
 h1::after{
@@ -113,7 +113,7 @@ h2::after{
 h3{font-size:1.4rem;margin-bottom:.5rem}
 .text-content p{font-size:1rem;line-height:1.7;color:var(--wood-brown);margin-bottom:1rem}
 
-/* 9. 图片/视频 */
+/* 图片/视频 */
 .section-image,
 .video-container,
 .slider-image,
@@ -128,7 +128,7 @@ h3{font-size:1.4rem;margin-bottom:.5rem}
 .split-section img:hover,
 .split-section video:hover{transform:scale(1.02)}
 
-/* 10. 视频容器保持 16:9 */
+/* 视频容器保持 16:9 */
 .video-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden}
 .video-container iframe,
 .video-container video{
@@ -136,7 +136,7 @@ h3{font-size:1.4rem;margin-bottom:.5rem}
     border:none;border-radius:var(--radius)
 }
 
-/* 11. 轮播 */
+/* 轮播 */
 .image-slider{position:relative;overflow:hidden;border-radius:var(--radius);box-shadow:var(--shadow);height:380px;margin-bottom:2rem}
 .slider-image{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity .5s}
 .slider-image.active{opacity:1;position:relative}
@@ -153,7 +153,7 @@ h3{font-size:1.4rem;margin-bottom:.5rem}
 }
 .slider-indicators button.active{background:var(--candle-gold);transform:scale(1.2)}
 
-/* 12. 按钮通用 */
+/* 按钮通用 */
 .button-link,
 .close-button,
 .btn-toggle-more{
@@ -168,7 +168,7 @@ h3{font-size:1.4rem;margin-bottom:.5rem}
     box-shadow:0 8px 24px rgba(200,149,95,.35);transform:translateY(-3px)
 }
 
-/* 13. 团队成员卡片 */
+/* 团队成员卡片 */
 .team-members{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem}
 .team-member{text-align:center;padding:1.5rem}
 .team-member img{width:120px;height:120px;border-radius:50%;border:4px solid var(--candle-gold);transition:transform .3s}
@@ -176,12 +176,12 @@ h3{font-size:1.4rem;margin-bottom:.5rem}
 .team-member h4{color:var(--candle-gold);margin-bottom:.3rem}
 .team-member p{color:var(--wood-brown)}
 
-/* 14. 列表美化 */
+/* 列表美化 */
 .text-content ul{list-style:none;padding-left:20px}
 .text-content ul li{position:relative;padding-left:20px;margin-bottom:.5rem}
 .text-content ul li::before{content:'•';position:absolute;left:0;color:var(--candle-gold);font-size:1.2rem}
 
-/* 15. 浮动按钮：玻璃质感 */
+/* 浮动按钮：玻璃质感 */
 .floating-icons{position:fixed;bottom:30px;right:30px;display:flex;flex-direction:column;gap:0;z-index:10000}
 .floating-icon-button{
     background:rgba(255,255,255,.35);backdrop-filter:blur(6px);
@@ -190,7 +190,7 @@ h3{font-size:1.4rem;margin-bottom:.5rem}
 }
 .floating-icon-text{color:var(--candle-gold);font-size:.8rem;font-weight:600}
 
-/* 16. 弹窗：毛玻璃卡片 */
+/* 弹窗：毛玻璃卡片 */
 .submit-modal,.share-modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:10001;justify-content:center;align-items:center}
 .submit-modal.open,.share-modal.open{display:flex;animation:modalFadeIn .3s forwards}
 .modal-content,.share-content{
@@ -201,21 +201,21 @@ h3{font-size:1.4rem;margin-bottom:.5rem}
 @keyframes modalFadeIn{from{opacity:0}to{opacity:1}}
 @keyframes modalZoomIn{from{transform:scale(0)}to{transform:scale(1)}}
 
-/* 17. 页脚 */
+/* 页脚 */
 .page-footer{
     background:var(--wood-brown);color:var(--warm-cotton);
     text-align:center;padding:1.5rem 1rem;margin-top:3rem;
     border-radius:var(--radius) var(--radius) 0 0
 }
 
-/* 18. 下滑提示 */
+/* 下滑提示 */
 .scroll-down-indicator svg path{fill:var(--candle-gold)}
 @keyframes bounceDown{
     0%,100%{transform:translate(-50%,0)}
     50%{transform:translate(-50%,6px)}
 }
 
-/* 19. 响应式微调 */
+/* 响应式微调 */
 @media(max-width:768px){
     html{font-size:15px}
     .page-header{padding:.6rem 1rem}
