@@ -9,19 +9,41 @@
 <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
 <!-- 直接替换下方整段 <style> -->
-<style>
 /* ========= 温情陪伴·非遗口述史 — 一镜到底修复版 ========= */
-
-/* 1. 全局变量：软木暖金配色 */
+<style>
+/* 1. 全局变量：软木暖金配色（新增非遗特色色值） */
 :root{
     --warm-cotton:#F7F3EE;   /* 大面积背景 */
     --wood-brown:#4E413A;    /* 文字主色 */
     --candle-gold:#C8955F;   /* 按钮、强调 */
     --old-paper:#E7DCC3;     /* 卡片、分隔 */
+    --seal-red:#A62639;      /* 非遗朱砂印色 */
+    --bamboo:#7A8B76;        /* 竹编纹理色 */
     --radius:12px;
     --shadow:0 4px 12px rgba(78,65,58,.08);
     --font-title:'Noto Serif SC',serif;
     --font-body:'Noto Sans SC',sans-serif;
+}
+
+/* 2. 基础 & 滚动（新增非遗纹理背景） */
+*{margin:0;padding:0;box-sizing:border-box}
+html{
+    scroll-behavior:smooth;
+    font-size:16px;
+    font-family:var(--font-body);
+    background:linear-gradient(135deg,var(--warm-cotton) 0%,var(--old-paper) 100%);
+    color:var(--wood-brown);
+    scroll-padding-top:100px;
+}
+body{
+    line-height:1.75;
+    letter-spacing:.03em;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    /* 宣纸纹理+传统纹样背景 */
+    background-image: 
+        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z' fill='%237A8B76' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C8955F' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
 /* 2. 基础 & 滚动 */
@@ -41,7 +63,7 @@ body{
     -moz-osx-font-smoothing:grayscale;
 }
 
-/* 3. 页头：磨砂玻璃 */
+/* 3. 页头：磨砂玻璃（新增非遗纹饰） */
 .page-header{
     position:fixed;top:0;left:0;width:100%;
     background:rgba(255,255,255,.45);
@@ -56,7 +78,23 @@ body{
     transition:background .3s,box-shadow .3s;
 }
 .page-header.scrolled{background:rgba(255,255,255,.55);box-shadow:0 4px 12px rgba(78,65,58,.12)}
-.page-title{font-size:2rem;font-family:var(--font-title);font-weight:700;color:var(--candle-gold);letter-spacing:.05rem}
+.page-title{
+    font-size:2rem;font-family:var(--font-title);font-weight:700;
+    color:var(--seal-red);letter-spacing:.05rem;
+    position:relative;
+    padding-left:28px;
+}
+.page-title::before{
+    content:'';
+    position:absolute;
+    left:0;
+    top:50%;
+    transform:translateY(-50%);
+    width:20px;
+    height:20px;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23A62639'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z'/%3E%3C/svg%3E");
+    background-size:contain;
+}
 
 /* 4. 导航 */
 .page-nav a.active{background-color:var(--candle-gold);color:var(--warm-cotton)}
@@ -81,7 +119,7 @@ body{
     .page-nav ul a:hover{background:var(--candle-gold);color:var(--warm-cotton);transform:translateX(5px)}
 }
 
-/* 6. Hero 首屏（保留视差 & 交互） */
+/* 6. Hero 首屏（保留视差 & 交互，新增印章效果） */
 .hero-trail{
     height:100vh;
     background:linear-gradient(135deg,var(--old-paper) 0%,var(--candle-gold) 100%);
@@ -97,61 +135,132 @@ body{
     color:var(--candle-gold);padding:2.5rem 3rem;border-radius:24px;
     box-shadow:0 10px 30px rgba(78,65,58,.25);max-width:800px;animation:fadeInUp 1s ease
 }
+.hero-trail-content::after{
+    content:'非遗传承';
+    position:absolute;
+    right:30px;
+    bottom:30px;
+    transform:rotate(15deg);
+    font-family:var(--font-title);
+    font-size:1.5rem;
+    color:var(--seal-red);
+    border:3px solid var(--seal-red);
+    padding:0.3rem 0.8rem;
+    border-radius:0.3rem;
+    opacity:0.8;
+    z-index:-1;
+}
 .hero-trail-content h1{font-size:3rem;font-weight:700;margin-bottom:1rem;font-family:var(--font-title)}
 .hero-trail-content p{font-size:1.3rem;line-height:1.8;margin-bottom:1.5rem}
 .hero-trail-content .hero-subtext{font-size:1rem;margin-bottom:2rem;color:var(--wood-brown)}
 .hero-trail-content a{
-    display:inline-block;background:var(--candle-gold);color:var(--warm-cotton);
-    padding:.8rem 2rem;font-weight:600;font-size:1.1rem;border-radius:30px;
-    text-decoration:none;transition:all .3s;box-shadow:0 6px 18px rgba(200,149,95,.4)
+    display:inline-block;background:var(--seal-red);color:white;
+    padding:.8rem 2rem;font-weight:600;font-size:1.1rem;border-radius:4px;
+    text-decoration:none;transition:all .3s;box-shadow:0 6px 18px rgba(166,38,57,.3);
+    position:relative;
+    overflow:hidden;
 }
-.hero-trail-content a:hover{background:var(--warm-cotton);color:var(--candle-gold);transform:translateY(-3px)}
+.hero-trail-content a::after{
+    content:'';
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+    transition:all 0.5s ease;
+}
+.hero-trail-content a:hover::after{
+    left:100%;
+}
+.hero-trail-content a:hover{background:var(--wood-brown);color:var(--warm-cotton);transform:translateY(-3px)}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
 
 /* 7. 波浪分割线 */
 .hero-wave-divider{position:relative;margin-top:-8px;z-index:1}
 .hero-wave-divider svg{display:block;width:100%;height:auto;fill:var(--old-paper)}
 
-/* 8. 折叠内容 */
+/* 8. 折叠内容（优化非遗文本阅读体验） */
 .more-content{overflow:hidden;max-height:0;opacity:0;transition:max-height .5s ease,opacity .5s ease}
 .more-content.expanded{max-height:1000px;opacity:1}
 .btn-toggle-more{
-    display:inline-block;background:var(--candle-gold);color:var(--warm-cotton);
-    padding:.8rem 2rem;font-weight:600;font-size:1.1rem;border-radius:30px;border:none;
-    cursor:pointer;transition:all .3s;box-shadow:0 6px 15px rgba(200,149,95,.25)
+    display:inline-block;background:var(--seal-red);color:white;
+    padding:.8rem 2rem;font-weight:600;font-size:1.1rem;border-radius:4px;border:none;
+    cursor:pointer;transition:all .3s;box-shadow:0 6px 15px rgba(166,38,57,.25);
+    position:relative;
+    overflow:hidden;
 }
-.btn-toggle-more:hover{background:var(--warm-cotton);color:var(--candle-gold);transform:translateY(-3px)}
+.btn-toggle-more::after{
+    content:'';
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+    transition:all 0.5s ease;
+}
+.btn-toggle-more:hover::after{
+    left:100%;
+}
+.btn-toggle-more:hover{background:var(--wood-brown);color:var(--warm-cotton);transform:translateY(-3px)}
 
 /* 9. 主体容器 */
 .page-main{padding:100px 1.5rem 3rem;max-width:960px;margin:0 auto}
 
-/* 10. 通用卡片 */
+/* 10. 通用卡片（新增非遗质感） */
 .section-wrapper,.team-group,.team-member,.split-section{
     background:var(--old-paper);padding:2rem;border-radius:var(--radius);box-shadow:var(--shadow);
-    margin-bottom:2rem;transition:transform .3s,box-shadow .3s
+    margin-bottom:2rem;transition:transform .3s,box-shadow .3s;
+    border:1px solid rgba(200,149,95,0.15);
+    position:relative;
+    overflow:hidden;
+}
+.section-wrapper::before, .team-member::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:1px;
+    background:linear-gradient(90deg, transparent 0%, var(--candle-gold) 50%, transparent 100%);
 }
 .section-wrapper:hover,.team-group:hover,.team-member:hover,.split-section:hover{
-    transform:translateY(-4px);box-shadow:0 8px 20px rgba(78,65,58,.12)
+    transform:rotate(0.5deg) translateY(-4px);
+    box-shadow:0 8px 20px rgba(78,65,58,.15);
+    transition:all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* 11. 标题 */
-h1,h2,h3{font-family:var(--font-title);color:var(--candle-gold)}
+/* 11. 标题（毛笔笔触效果） */
+h1,h2,h3{
+    font-family:var(--font-title);
+    position:relative;
+    background-clip:text;
+    -webkit-background-clip:text;
+    color:transparent;
+    background-image:linear-gradient(135deg, var(--wood-brown) 0%, #2D2E2E 100%);
+}
 h1{font-size:2.2rem;text-align:center;margin-bottom:1rem;position:relative}
 h1::after{
     content:'';position:absolute;left:50%;bottom:-8px;transform:translateX(-50%);
-    width:80px;height:3px;background:var(--candle-gold);border-radius:3px
+    width:100px;height:4px;background:var(--seal-red);border-radius:3px;
+    box-shadow:0 2px 6px rgba(166,38,57,0.3);
 }
 h2{font-size:1.8rem;margin-bottom:1rem;position:relative}
 h2::after{
-    content:'';position:absolute;left:0;bottom:-4px;width:50px;height:2px;
-    background:var(--candle-gold);border-radius:2px
+    content:'';position:absolute;left:0;bottom:-4px;width:60px;height:2px;
+    background:var(--candle-gold);border-radius:2px;
+    box-shadow:0 1px 3px rgba(200,149,95,0.4);
 }
 h3{font-size:1.4rem;margin-bottom:.5rem}
 .text-content p{font-size:1rem;line-height:1.7;color:var(--wood-brown);margin-bottom:1rem}
 
-/* 12. 图片/视频/轮播 */
+/* 12. 图片/视频/轮播（非遗装裱效果） */
 .section-image,.video-container,.slider-image,.split-section img,.split-section video{
-    width:100%;border-radius:var(--radius);box-shadow:var(--shadow);transition:transform .35s
+    width:100%;border-radius:var(--radius);box-shadow:var(--shadow);transition:transform .35s;
+    border:8px solid white;
+    box-shadow:0 3px 10px rgba(0,0,0,0.08);
+    border-radius:4px;
 }
 .section-image:hover,.video-container:hover,.slider-image:hover,.split-section img:hover,.split-section video:hover{transform:scale(1.02)}
 
@@ -163,32 +272,62 @@ h3{font-size:1.4rem;margin-bottom:.5rem}
 .slider-image.active{opacity:1;position:relative}
 .slider-btn{
     position:absolute;top:50%;transform:translateY(-50%);
-    background:rgba(255,255,255,.8);border:2px solid var(--candle-gold);
-    color:var(--candle-gold);border-radius:50%;padding:.6rem 1rem;font-size:1.5rem;
+    background:rgba(255,255,255,.8);border:2px solid var(--seal-red);
+    color:var(--seal-red);
+    padding:.6rem 1rem;border-radius:50%;font-size:1.5rem;
     transition:all .3s;cursor:pointer
 }
-.slider-btn:hover{background:var(--candle-gold);color:var(--warm-cotton)}
+.slider-btn:hover{background:var(--seal-red);color:white}
 .slider-indicators button{
-    background:rgba(255,255,255,.8);border:2px solid var(--candle-gold);
+    background:rgba(255,255,255,.8);border:2px solid var(--seal-red);
     width:14px;height:14px;border-radius:50%;margin:0 6px;cursor:pointer;transition:all .3s
 }
-.slider-indicators button.active{background:var(--candle-gold);transform:scale(1.2)}
+.slider-indicators button.active{background:var(--seal-red);transform:scale(1.2)}
 
-/* 13. 按钮通用 & 居中 */
+/* 13. 按钮通用 & 居中（印章风格） */
 .button-link{
-    display:inline-block;background:var(--candle-gold);color:var(--warm-cotton);
-    padding:.8rem 2rem;font-weight:600;font-size:1.1rem;border-radius:30px;border:none;
-    cursor:pointer;transition:all .3s;box-shadow:0 6px 15px rgba(200,149,95,.25)
+    display:inline-block;background:var(--seal-red);color:white;
+    padding:.8rem 2rem;font-weight:600;font-size:1.1rem;border-radius:4px;border:none;
+    cursor:pointer;transition:all .3s;box-shadow:0 6px 15px rgba(166,38,57,.25);
+    position:relative;
+    overflow:hidden;
 }
-.button-link:hover{background:var(--warm-cotton);color:var(--candle-gold);transform:translateY(-3px)}
+.button-link::after{
+    content:'';
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+    transition:all 0.5s ease;
+}
+.button-link:hover::after{
+    left:100%;
+}
+.button-link:hover{
+    background:var(--wood-brown);
+    color:var(--warm-cotton);
+    transform:translateY(-3px);
+}
 .experience-section{display:flex;justify-content:center;align-items:center;padding:2rem 0 3rem}
 
 /* 14. 团队成员 & 交错 */
 .team-members{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem}
 .team-member{text-align:center;padding:1.5rem}
-.team-member img{width:120px;height:120px;border-radius:50%;border:4px solid var(--candle-gold);transition:transform .3s}
+.team-member img{
+    width:120px;height:120px;border-radius:50%;
+    border:4px solid var(--candle-gold);transition:transform .3s
+}
 .team-member:hover img{transform:scale(1.05)}
-.team-member h4{color:var(--candle-gold);margin-bottom:.3rem}
+.team-member h4{
+    color:var(--candle-gold);
+    margin-bottom:.3rem;
+    background-clip:text;
+    -webkit-background-clip:text;
+    color:transparent;
+    background-image:linear-gradient(135deg, var(--wood-brown) 0%, #2D2E2E 100%);
+}
 .team-member p{color:var(--wood-brown)}
 
 .team-groups{display:grid;grid-template-columns:1fr;gap:1.5rem}
@@ -209,12 +348,23 @@ h3{font-size:1.4rem;margin-bottom:.5rem}
 @keyframes modalFadeIn{from{opacity:0}to{opacity:1}}
 @keyframes modalZoomIn{from{transform:scale(0)}to{transform:scale(1)}}
 
-/* 16. 浮动按钮（右下角双按钮+呼吸+上下浮动） */
+/* 16. 浮动按钮（非遗元素） */
 .floating-icons{position:fixed;bottom:30px;right:30px;display:flex;flex-direction:column;gap:0;z-index:10000}
 .floating-icon{display:flex;flex-direction:column;align-items:center;cursor:pointer;transition:all .3s;position:relative}
-.floating-icon-button{background:rgba(255,255,255,.35);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.5);border-radius:8px;display:flex;justify-content:center;align-items:center;transition:all .3s;overflow:hidden;animation:pulse 3s infinite}
-.floating-icon:first-child .floating-icon-button{width:75px;height:90px}
-.floating-icon:last-child .floating-icon-button{width:75px;height:22.5px}
+.floating-icon-button{
+    background:rgba(255,255,255,.35);backdrop-filter:blur(6px);
+    border:2px solid var(--candle-gold);
+    border-radius:8px;display:flex;justify-content:center;align-items:center;
+    transition:all .3s;overflow:hidden;animation:pulse 3s infinite
+}
+.floating-icon:first-child .floating-icon-button{
+    width:75px;height:90px;
+    border-radius:8px 8px 0 0;
+}
+.floating-icon:last-child .floating-icon-button{
+    width:75px;height:22.5px;
+    border-radius:0 0 8px 8px;
+}
 .floating-icon-button img{width:100%;height:100%;object-fit:cover}
 .floating-icon-text{font-size:.8rem;color:var(--candle-gold);background:rgba(255,255,255,.8);padding:2px 6px;border-radius:4px;font-weight:600;white-space:nowrap;transition:all .3s}
 .floating-icon:first-child .floating-icon-text{margin-bottom:8px}
@@ -227,13 +377,31 @@ h3{font-size:1.4rem;margin-bottom:.5rem}
 .floating-icon:hover .floating-icon-button{box-shadow:0 8px 25px rgba(200,149,95,.4);transform:scale(1.05)}
 .floating-icon:hover .floating-icon-text{transform:translateY(-2px)}
 
-/* 17. 页脚 */
-.page-footer{background:var(--wood-brown);color:var(--warm-cotton);text-align:center;padding:1.5rem 1rem;margin-top:3rem;border-radius:var(--radius) var(--radius) 0 0}
+/* 17. 页脚（印章水印效果） */
+.page-footer{
+    background:var(--wood-brown);color:var(--warm-cotton);
+    text-align:center;padding:1.5rem 1rem;
+    margin-top:3rem;border-radius:var(--radius) var(--radius) 0 0;
+    position:relative;
+}
+.page-footer::after{
+    content:'记艺拾光';
+    position:absolute;
+    right:30px;
+    bottom:20px;
+    color:rgba(255,255,255,0.1);
+    font-family:"Noto Serif SC", serif;
+    font-size:3rem;
+    transform:rotate(15deg);
+    pointer-events:none;
+}
 
 /* 下滑提示 */
 .scroll-down-indicator{
     position:absolute;bottom:40px;left:50%;transform:translateX(-50%);
-    cursor:pointer;animation:bounceDown 2s infinite;z-index:2;opacity:.9
+    cursor:pointer;animation:bounceDown 2s infinite;z-index:2;opacity:.9;
+    color:var(--seal-red);
+    font-size:1.5rem;
 }
 @keyframes bounceDown{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,6px)}}
 
@@ -256,6 +424,23 @@ h3{font-size:1.4rem;margin-bottom:.5rem}
     user-select:none;
     margin-bottom:2rem;
     height:380px;          /* ← 旧高度 */
+    border:12px solid var(--old-paper);
+}
+.image-slider::before, .image-slider::after{
+    content:'';
+    position:absolute;
+    top:0;
+    width:40px;
+    height:100%;
+    z-index:1;
+}
+.image-slider::before{
+    left:0;
+    background:linear-gradient(90deg, rgba(245,241,232,0.8) 0%, transparent 100%);
+}
+.image-slider::after{
+    right:0;
+    background:linear-gradient(270deg, rgba(245,241,232,0.8) 0%, transparent 100%);
 }
 
 /* 2. 轮播按钮位置 & 样式复原 */
@@ -319,8 +504,61 @@ h3{font-size:1.4rem;margin-bottom:.5rem}
 }
 .split-section img:hover,
 .split-section video:hover{transform:scale(1.02)}
+/* ===== 文字扩展后自适应窗格补丁 ===== */
 
-</style>
+/* 1. 折叠面板最大高度改为“自适应” */
+.more-content{
+    overflow:hidden;
+    max-height:0;          /* 初始关闭 */
+    opacity:0;
+    transition:max-height .6s ease, opacity .5s ease;
+}
+.more-content.expanded{
+    /* 让浏览器自己算高度，不再写死 1000px */
+    max-height:none;      /* 先放开限制 */
+    opacity:1;
+    /* 但动画需要具体数值，用一个小技巧： */
+    animation:expandSlide .6s forwards;
+}
+@keyframes expandSlide{
+    0%   { max-height:0;   opacity:0; }
+    99%  { max-height:99em;opacity:1; } /* 预留足够空间 */
+    100% { max-height:none;opacity:1; } /* 动画结束后保持自然高度 */
+}
+
+/* 2. 防止文字撑破卡片 */
+.section-wrapper,
+.team-group,
+.split-section{
+    word-break:break-word;
+    overflow-wrap:break-word;
+    hyphens:auto;
+    min-height:0; /* 避免 flex 或 grid 撑破 */
+}
+
+/* 3. 折叠面板内文字行距更宽松，易读 */
+.more-content p,
+.more-content li{
+    line-height:1.9;
+}
+
+/* 4. 内容过长时滚动条（优雅滚动） */
+.more-content{
+    overflow-y:auto;
+    scrollbar-width:thin;
+    scrollbar-color:var(--candle-gold) var(--old-paper);
+}
+.more-content::-webkit-scrollbar{width:6px}
+.more-content::-webkit-scrollbar-track{background:var(--old-paper);border-radius:3px}
+.more-content::-webkit-scrollbar-thumb{background:var(--candle-gold);border-radius:3px}
+
+/* 5. 小屏额外优化 */
+@media(max-width:768px){
+    .more-content{
+        max-height:70vh; /* 防止手机过长内容溢出屏幕 */
+    }
+}
+<style>
 </head>
 <body>
   <!-- Hero 首屏模块（优化渐变配色） -->
