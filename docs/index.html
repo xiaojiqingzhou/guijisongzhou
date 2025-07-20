@@ -319,7 +319,155 @@ h3{font-size:1.4rem;margin-bottom:.5rem}
 }
 .split-section img:hover,
 .split-section video:hover{transform:scale(1.02)}
+/* ===== 非遗文化 3.0 终极增强包 ===== */
 
+/* 1. 非遗「回纹」边框 + 铜鎏金渐变按钮 */
+:root{
+    --pattern:url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0z' fill='none'/%3E%3Cpath d='M8 2h24v4H8zm0 8h4v20H8zm12 0h4v20h-4zm12 0h4v20h-4zM2 8h4v24H2zm8 0h20v4h-20zm0 12h20v4h-20zm0 12h20v4h-20z' stroke='%23C8955F' stroke-width='1' fill='none'/%3E%3C/svg%3E");
+}
+.button-link{
+    background:linear-gradient(135deg,#C8955F 0%,#B77C3A 100%);
+    border:2px solid transparent;
+    border-image:var(--pattern) 8;
+    font-family:'ZCOOL XiaoWei',serif;
+    letter-spacing:.05em;
+}
+
+/* 2. 非遗「景泰蓝」琉璃卡片光泽 */
+.section-wrapper{
+    position:relative;
+    background:linear-gradient(145deg,var(--old-paper) 0%,#fff 100%);
+    overflow:hidden;
+}
+.section-wrapper::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle at 70% 30%,rgba(200,149,95,.15) 0%,transparent 70%);
+    pointer-events:none;
+}
+
+/* 3. 非遗「剪纸」镂空滚动条 */
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:var(--old-paper);border-radius:4px}
+::-webkit-scrollbar-thumb{background:var(--candle-gold);border-radius:4px;border:2px solid var(--old-paper)}
+
+/* 4. 非遗「丝线」分隔线 */
+hr{
+    border:0;
+    height:2px;
+    background:repeating-linear-gradient(90deg,var(--candle-gold) 0 4px,transparent 4px 8px);
+    margin:2rem 0;
+}
+
+/* 5. 非遗「印章」角标（随机出现） */
+.section-wrapper:nth-child(odd)::after{
+    content:'非遗';
+    position:absolute;
+    top:1rem;
+    right:1rem;
+    background:var(--candle-gold);
+    color:var(--warm-cotton);
+    font-size:.75rem;
+    padding:.2rem .4rem;
+    border-radius:4px;
+    font-family:'ZCOOL XiaoWei',serif;
+    letter-spacing:.1em;
+    animation:stampIn .6s ease;
+}
+@keyframes stampIn{from{opacity:0;transform:scale(2)}to{opacity:1;transform:scale(1)}}
+
+/* 6. 非遗「皮影」悬浮阴影 */
+.team-member img{
+    filter:drop-shadow(0 4px 8px rgba(78,65,58,.25));
+    transition:filter .3s,transform .3s;
+}
+.team-member:hover img{
+    filter:drop-shadow(0 8px 16px rgba(78,65,58,.4));
+    transform:scale(1.05) rotate(1deg);
+}
+
+/* 7. 非遗「皮影」轮播边框 */
+.image-slider{
+    border:4px solid transparent;
+    border-image:var(--pattern) 8;
+    box-shadow:0 8px 20px rgba(78,65,58,.15);
+}
+
+/* 8. 非遗「铜灯」呼吸按钮 */
+.experience-section .button-link{
+    animation:bronzeGlow 3s infinite alternate;
+}
+@keyframes bronzeGlow{
+    0%{box-shadow:0 0 0 0 rgba(200,149,95,.4)}
+    100%{box-shadow:0 0 0 8px rgba(200,149,95,0)}
+}
+
+/* 9. 非遗「宣纸」纸纹背景 */
+body{
+    background-image:
+        linear-gradient(135deg,var(--warm-cotton) 0%,var(--old-paper) 100%),
+        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* 10. 非遗「老照片」颗粒滤镜（滚动时淡入） */
+.more-content{
+    transition:filter .5s;
+}
+.more-content.expanded{
+    filter:contrast(1.05) sepia(.05);
+}
+
+/* 11. 非遗「年表」时间轴 */
+.text-content ul li{
+    position:relative;
+    padding-left:30px;
+    border-left:2px solid var(--candle-gold);
+    margin:1rem 0;
+}
+.text-content ul li::before{
+    content:'';
+    position:absolute;
+    left:-6px;
+    top:.5em;
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:var(--candle-gold);
+}
+
+/* 12. 适老化字体放大按钮（右上角浮动） */
+@media (min-width: 1024px){
+    body::before{
+        content:'';
+        position:fixed;
+        top:.5rem;
+        right:.5rem;
+        width:40px;
+        height:40px;
+        background:var(--candle-gold);
+        border-radius:50%;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:1.2rem;
+        color:var(--warm-cotton);
+        cursor:pointer;
+        z-index:99999;
+        transition:transform .3s;
+    }
+    body::before:hover{transform:scale(1.1)}
+    body::after{
+        content:'Aa';
+        position:fixed;
+        top:.5rem;
+        right:.5rem;
+        color:var(--warm-cotton);
+        font-weight:bold;
+        z-index:100000;
+        pointer-events:none;
+    }
+}
 </style>
 </head>
 <body>
