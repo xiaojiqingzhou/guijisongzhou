@@ -245,6 +245,81 @@ h3{font-size:1.4rem;margin-bottom:.5rem}
     .section-wrapper{padding:1.5rem}
     .button-link{padding:.7rem 1.6rem;font-size:1rem}
 }
+/* ===== 旧布局 & 轮播完全复原补丁 ===== */
+
+/* 1. 轮播图恢复旧 380px 高度 + 圆角阴影 */
+.image-slider{
+    position:relative;
+    overflow:hidden;
+    border-radius:15px;
+    box-shadow:0 4px 12px rgba(0,0,0,.1);
+    user-select:none;
+    margin-bottom:2rem;
+    height:380px;          /* ← 旧高度 */
+}
+
+/* 2. 轮播按钮位置 & 样式复原 */
+.slider-btn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(255,255,255,.8);
+    border:2px solid #C6653A;
+    color:#C6653A;
+    padding:.6rem 1rem;
+    border-radius:50%;
+    font-size:1.5rem;
+    cursor:pointer;
+    z-index:10;
+    opacity:.7;
+    transition:all .3s;
+}
+.slider-btn.prev{left:15px}
+.slider-btn.next{right:15px}
+
+/* 3. 轮播指示器恢复 */
+.slider-indicators{
+    position:absolute;
+    bottom:20px;
+    width:100%;
+    text-align:center;
+    user-select:none;
+    z-index:10;
+}
+.slider-indicators button{
+    background:rgba(255,255,255,.8);
+    border:2px solid #C6653A;
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    margin:0 6px;
+    cursor:pointer;
+    transition:all .3s;
+}
+.slider-indicators button.active{background:#C6653A;transform:scale(1.2)}
+
+/* 4. 图片交错布局（奇偶左右交替） */
+.split-section{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:2rem;
+    align-items:center;
+}
+@media (max-width: 768px){
+    .split-section{grid-template-columns:1fr}
+}
+
+.split-section img,
+.split-section video{
+    width:100%;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,.1);
+    object-fit:cover;
+    transition:transform .3s;
+}
+.split-section img:hover,
+.split-section video:hover{transform:scale(1.02)}
+
 </style>
 </head>
 <body>
