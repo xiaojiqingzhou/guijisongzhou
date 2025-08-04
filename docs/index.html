@@ -320,7 +320,23 @@ h3{font-size:1.4rem;margin-bottom:.5rem}
 .split-section img:hover,
 .split-section video:hover{transform:scale(1.02)}
 
+ /* ========= 微调补丁 ========= */
+
+/* 1. Hero 首屏卡片宽度 & 标题单行显示 */
+.hero-trail-content{
+    max-width:900px;        /* 由 800px 放大，防止 3rem 内边距挤压 */
+    width:calc(100% - 4rem);/* 左右各留 2rem 安全边距 */
+}
+.hero-trail-content h1{
+    white-space:nowrap;    /* 强制一行 */
+    font-size:clamp(2.4rem,5vw,3rem); /* 随屏宽略缩放，避免溢出 */
+}
+
+/* 2. 了解更多按钮与展开文本间距 */
+.btn-toggle-more{ margin-bottom:1.2rem; } /* 拉开按钮与下方展开区的距离 */
+.more-content p:first-child{ margin-top:.5rem; } /* 展开区首段再收一点，整体更透气 */
 </style>
+ 
 </head>
 <body>
   <!-- Hero 首屏模块（优化渐变配色） -->
