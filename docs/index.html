@@ -95,9 +95,9 @@ body{
     position:relative;z-index:2;
     background:rgba(255,255,255,.88);backdrop-filter:blur(8px);
     color:var(--candle-gold);padding:2.5rem 3rem;border-radius:24px;
-    box-shadow:0 10px 30px rgba(78,65,58,.25);max-width:800px;animation:fadeInUp 1s ease
+    box-shadow:0 10px 30px rgba(78,65,58,.25);max-width:900px;width:calc(100% - 4rem);animation:fadeInUp 1s ease
 }
-.hero-trail-content h1{font-size:3rem;font-weight:700;margin-bottom:1rem;font-family:var(--font-title)}
+.hero-trail-content h1{font-size:clamp(2.4rem,5vw,3rem);font-weight:700;margin-bottom:1rem;font-family:var(--font-title);white-space:nowrap}
 .hero-trail-content p{font-size:1.3rem;line-height:1.8;margin-bottom:1.5rem}
 .hero-trail-content .hero-subtext{font-size:1rem;margin-bottom:2rem;color:var(--wood-brown)}
 .hero-trail-content a{
@@ -118,9 +118,11 @@ body{
 .btn-toggle-more{
     display:inline-block;background:var(--candle-gold);color:var(--warm-cotton);
     padding:.8rem 2rem;font-weight:600;font-size:1.1rem;border-radius:30px;border:none;
-    cursor:pointer;transition:all .3s;box-shadow:0 6px 15px rgba(200,149,95,.25)
+    cursor:pointer;transition:all .3s;box-shadow:0 6px 15px rgba(200,149,95,.25);
+    margin-bottom:1.2rem
 }
 .btn-toggle-more:hover{background:var(--warm-cotton);color:var(--candle-gold);transform:translateY(-3px)}
+.more-content p:first-child{margin-top:.5rem}
 
 /* 9. 主体容器 */
 .page-main{padding:100px 1.5rem 3rem;max-width:960px;margin:0 auto}
@@ -319,22 +321,6 @@ h3{font-size:1.4rem;margin-bottom:.5rem}
 }
 .split-section img:hover,
 .split-section video:hover{transform:scale(1.02)}
-
- /* ========= 微调补丁 ========= */
-
-/* 1. Hero 首屏卡片宽度 & 标题单行显示 */
-.hero-trail-content{
-    max-width:900px;        /* 由 800px 放大，防止 3rem 内边距挤压 */
-    width:calc(100% - 4rem);/* 左右各留 2rem 安全边距 */
-}
-.hero-trail-content h1{
-    white-space:nowrap;    /* 强制一行 */
-    font-size:clamp(2.4rem,5vw,3rem); /* 随屏宽略缩放，避免溢出 */
-}
-
-/* 2. 了解更多按钮与展开文本间距 */
-.btn-toggle-more{ margin-bottom:1.2rem; } /* 拉开按钮与下方展开区的距离 */
-.more-content p:first-child{ margin-top:.5rem; } /* 展开区首段再收一点，整体更透气 */
 </style>
  
 </head>
